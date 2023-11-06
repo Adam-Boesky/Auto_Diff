@@ -1,0 +1,25 @@
+name: coverage
+on: push
+
+jobs: 
+  test-coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+        with: 
+          python-version: '3.10'
+      - name: "Install python dependencies"
+        run: |
+          pip3 install pytest
+          pip3 install pytest-cov
+      - name: "Get coverage"
+        run: |
+          COVERAGE=$(pytest --cov src | grep 'TOTAL' | tail -c 4 | head -c 2)
+          if [ $COVERAGE -gt 89 ]
+          then
+          echo "success"
+          else
+          echo "failure"
+          exit 1
+          fi

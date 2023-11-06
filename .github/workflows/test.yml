@@ -1,0 +1,17 @@
+name: test
+on: push
+
+jobs: 
+  testing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+        with: 
+          python-version: '3.10'
+      - name: "Install python dependencies"
+        run: pip3 install pytest
+      - name: "Run test script"
+        run: |
+          cd test_suite
+          ./run_tests.sh
