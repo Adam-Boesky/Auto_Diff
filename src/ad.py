@@ -14,7 +14,7 @@ class AutoDiff():
         if isinstance(vec, (float, int)):
             vec = [vec]
         if isinstance(vec, list):
-            vec = np.ndarray(vec)
+            vec = np.array(vec)
 
         # If the user hasn't pass in a list of values
         if not isinstance(vec, np.ndarray):
@@ -37,7 +37,7 @@ class AutoDiff():
         if isinstance(vec, (float, int)):
             vec = [vec]
         if isinstance(vec, list):
-            vec = np.ndarray(vec)
+            vec = np.array(vec)
 
         # If the user hasn't pass in a list of values
         if not isinstance(vec, np.ndarray):
@@ -54,6 +54,7 @@ class AutoDiff():
 
                 for j in range(i + 1, len(vec)):
                     lst.append(DualNumber(vec[j], 0))
+                lst = np.array(lst)
                 try:
                     curr = self.function(lst)
                 except:
