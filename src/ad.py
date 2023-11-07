@@ -24,7 +24,7 @@ class AutoDiff():
         else: 
             try:
                 # Make tracer vector with all values as DualNumbers and evaluate the given function
-                tracer = [DualNumber(val, 1) for val in vec] 
+                tracer = np.array([DualNumber(val, 1) for val in vec])
                 evaluation = self.function(tracer) 
             except:
                 raise ValueError('Entries in input vector must be either int or float.')
