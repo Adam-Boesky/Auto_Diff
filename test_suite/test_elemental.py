@@ -1,4 +1,4 @@
-from src.elemental_functions import sin, cos, tan, exp
+from src.elementary_functions import sin, cos, tan, exp
 from src.dual import DualNumber as DN
 import numpy as np
 

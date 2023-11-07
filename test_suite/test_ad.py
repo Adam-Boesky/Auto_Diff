@@ -1,5 +1,5 @@
 import numpy as np
-from src.elemental_functions import sin, cos, tan, exp
+from src.elementary_functions import sin, cos, tan, exp
 from src.ad import AutoDiff as AD
 
 class Test_Auto_Diff():
