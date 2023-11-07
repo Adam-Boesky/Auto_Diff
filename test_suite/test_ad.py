@@ -58,22 +58,22 @@ class Test_Auto_Diff():
         assert np.isclose(func3.get_jacobian(2)[0], np.e ** 2, atol=1E-6)
         assert np.isclose(func4.get_jacobian(2)[0], 4 * (np.e ** 5) - np.sin(2), atol=1E-6)
 
-    def test_forwardmode(self):
+    def test_forward_mode(self):
         func1 = AD(self.fn1)
         func2 = AD(self.fn2)
         func3 = AD(self.fn3)
         func4 = AD(self.fn4)
 
-        assert [item[0] for item in func1.forwardmode(2)] == [5, 4]
+        assert [item[0] for item in func1.forward_mode(2)] == [5, 4]
 
-        result1 = [item[0] for item in func2.forwardmode(np.pi / 2)]
+        result1 = [item[0] for item in func2.forward_mode(np.pi / 2)]
         assert np.isclose(result1[0], 1, atol=1E-6)
         assert np.isclose(result1[1], 0, atol=1E-6)
 
-        result2 = [item[0] for item in func3.forwardmode(2)]
+        result2 = [item[0] for item in func3.forward_mode(2)]
         assert np.isclose(result2[0], np.e ** 2, atol=1E-6)
         assert np.isclose(result2[1], np.e ** 2, atol=1E-6)
 
-        result3 = [item[0] for item in func4.forwardmode(2)]
+        result3 = [item[0] for item in func4.forward_mode(2)]
         assert np.isclose(result3[0], (np.e ** 5) + np.cos(2), atol=1E-6)
         assert np.isclose(result3[1], 4 * (np.e ** 5) - np.sin(2), atol=1E-6)

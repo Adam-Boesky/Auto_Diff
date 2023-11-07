@@ -70,12 +70,12 @@ print(func1.get_jacobian(1)[0])
 ```
 Mention: the reason you have to add the 0th index when using the methods is that we plan to create the functionality for more dimensions as well, thus we currently output the results as lists. However, since for this milestone we only deal with scalar results, please add the `...[0]` index at the end of calling a specific method. 
 
-You can also assign the computed values outputted by the methods to other python names and use them in your modules. If you want to access both the `get_val` and `get_jacobian` at the same time, you can call the `forwardmode`:
+You can also assign the computed values outputted by the methods to other python names and use them in your modules. If you want to access both the `get_val` and `get_jacobian` at the same time, you can call the `forward_mode`:
 ```
-print(func1.forwardmode(1))
+print(func1.forward_mode(1))
 >>> ([1],[2.0])
 ```
-Mention: Please note that if you choose to use the `forwardmode` method, this will output a tuple of 2 lists, for the same reason noted above.  
+Mention: Please note that if you choose to use the `forward_mode` method, this will output a tuple of 2 lists, for the same reason noted above.  
 
 # 4. Software Organization
 ## 4.1. Directory Structure 
@@ -176,7 +176,7 @@ class DualNumber:
 
 ### AutoDiff Class
 The AutoDiff class has methods to carry out forward pass and calculate the Jacobian for now (we will implement the reverse method and its corresponding method for the final milestone). 
-Within the AutoDiff class, we are binding the implemention of the package, by using the functionalities of the other 2 modules: 'elemental_functions' and 'dual' when we evaluate the jacobian, whole forward pass or just substitute a value within the function.  At each level, this entails breaking down the input function into the elementary functions using the operator overloading in the 'dual' class and the 'elemental_functions' module, finally passing the output of the primal and tangent traces of each variable (in the form of a dual number) using the Dual class. For now, the 'get_val', 'get_jacobian', and 'forwardmode' methods output scalars (whose functionality in other projects is still highly valuable - see optimization tasks or the computation of Newton's method), but this will be expanded for the final milestone, as users will be able to work with higher order functions with our package. 
+Within the AutoDiff class, we are binding the implemention of the package, by using the functionalities of the other 2 modules: 'elemental_functions' and 'dual' when we evaluate the jacobian, whole forward pass or just substitute a value within the function.  At each level, this entails breaking down the input function into the elementary functions using the operator overloading in the 'dual' class and the 'elemental_functions' module, finally passing the output of the primal and tangent traces of each variable (in the form of a dual number) using the Dual class. For now, the 'get_val', 'get_jacobian', and 'forward_mode' methods output scalars (whose functionality in other projects is still highly valuable - see optimization tasks or the computation of Newton's method), but this will be expanded for the final milestone, as users will be able to work with higher order functions with our package. 
 
 The code below is the actual implementation of the class, where the usage of the other modules is observed, as well as assertion statements, that allow us to control the types of inputs given by the user for each public method. Moreover, we used the 2 instance attributes .function and .values to store the relevant information for the forward mode AD: its functions and value(s) for a certain input. 
 ```
@@ -211,7 +211,7 @@ class AutoDiff():
             self.get_val(val)
             return [value.dual for value in self.values]
 
-    def forwardmode(self, val=None):def fn(x):
+    def forward_mode(self, val=None):def fn(x):
     return x**2
 
 
@@ -220,7 +220,7 @@ if __name__ == "__main__":
     ad = AutoDiff(fn)
     print(ad.get_val(0))
     print(ad.get_jacobian())
-    print(ad.forwardmode())
+    print(ad.forward_mode())
         return self.get_val(val), self.get_jacobian(val)
 ```
 
