@@ -45,7 +45,7 @@ class Test_Auto_Diff():
         assert func3.get_val(4)[0] == np.e ** 4
         assert np.isclose(func4.get_val(1)[0], np.e ** 2 + np.cos(1), atol=1E-6)
         assert np.isclose(func4.get_val(0)[0], np.e + 1, atol=1E-6)
-    
+
     def test_get_jacobian(self):
         func1 = AD(self.fn1)
         func2 = AD(self.fn2)

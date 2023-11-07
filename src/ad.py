@@ -27,8 +27,12 @@ class AutoDiff():
             
     def get_jacobian(self, vec=None):
 
+        # If a scalar
+        if isinstance(vec, (float, int)):
+            vec = np.ndarray([vec])
+
         # If the user hasn't pass in a list of values
-        if not vec: 
+        if vec: 
             raise ValueError('No val has been passed into AutoDiff instance.')
         else:
             # Declare empty matrix for Jacobian
