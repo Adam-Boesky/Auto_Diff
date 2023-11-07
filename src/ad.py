@@ -10,8 +10,14 @@ class AutoDiff():
 
     def get_val(self, vec=None):
 
-        # If the user has never passed in val
-        if not vec: 
+        # If a scalar
+        if isinstance(vec, (float, int)):
+            vec = [vec]
+        if isinstance(vec, list):
+            vec = np.ndarray(vec)
+
+        # If the user hasn't pass in a list of values
+        if not isinstance(vec, np.ndarray):
             raise ValueError('No val has been passed into AutoDiff instance.')
 
         # If the user is passing in a new val
