@@ -1,5 +1,5 @@
-from dual import DualNumber
-from reversead import ReverseNode
+from src.dual import DualNumber
+from src.reversead import ReverseNode
 import numpy as np
 
 def sin(input):

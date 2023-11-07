@@ -1,7 +1,7 @@
 import numpy as np
-from dual import DualNumber 
-from elementary_functions import *
-from reversead import *
+from src.dual import DualNumber 
+from src.elementary_functions import *
+from src.reversead import *
 
 
 class AutoDiff():
