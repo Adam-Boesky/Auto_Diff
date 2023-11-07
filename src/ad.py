@@ -29,10 +29,12 @@ class AutoDiff():
 
         # If a scalar
         if isinstance(vec, (float, int)):
-            vec = np.ndarray([vec])
+            vec = [vec]
+        if isinstance(vec, list):
+            vec = np.ndarray(vec)
 
         # If the user hasn't pass in a list of values
-        if vec: 
+        if not isinstance(vec, np.ndarray):
             raise ValueError('No val has been passed into AutoDiff instance.')
         else:
             # Declare empty matrix for Jacobian
